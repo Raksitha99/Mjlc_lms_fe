@@ -1,0 +1,26 @@
+<div class="live-class-card">
+  <div class="date-block">
+    <span class="month">{{ liveClass.month }}</span>
+    <span class="day">{{ liveClass.day }}</span>
+  </div>
+
+  <div class="class-info">
+    <p class="class-title">{{ liveClass.title }}</p>
+    <p class="class-time">
+      <span class="clock-icon">🕐</span>
+      {{ liveClass.time }}
+    </p>
+    <p class="instructor">
+      <span class="person-icon">👤</span>
+      {{ liveClass.instructor }}
+    </p>
+  </div>
+
+  <div class="action">
+    @if (liveClass.isUpcoming) {
+      <button class="btn-join" (click)="onJoin()">Join</button>
+    } @else {
+      <button class="btn-alert" (click)="onSetAlert()">Set Alert</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<aside class="sidebar">
+
+  <div class="sidebar-brand">
+    <div class="brand-icon">NA</div>
+    <div class="brand-text">
+      <span class="brand-name">Nihongo Academy</span>
+      <span class="brand-sub">Admin Dashboard</span>
+    </div>
+  </div>
+
+  <p class="menu-label">MENU</p>
+
+  <nav class="nav-menu">
+    @for (item of navItems; track item.route) {
+
+      <a
+        class="nav-item"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+
+        @if (item.label === 'Dashboard') {
+          <span class="nav-arrow">→</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-profile">
+      <div class="avatar">TK</div>
+      <div class="user-info">
+        <span class="user-name">Tanaka Kenji</span>
+        <span class="user-role">Student</span>
+      </div>
+    </div>
+    <button class="logout-btn" (click)="onLogout()">↩</button>
+  </div>
+
+</aside>

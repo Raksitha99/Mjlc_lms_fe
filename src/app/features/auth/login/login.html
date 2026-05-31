@@ -1,0 +1,122 @@
+<div class="auth-card">
+
+  <app-logo />
+
+  <app-auth-tabs
+    [activeTab]="activeTab()"
+    (tabChange)="onTabChange($event)"
+  />
+
+  <!-- LOGIN FORM -->
+  @if (activeTab() === 'login') {
+    <form class="auth-form" (ngSubmit)="onLogin()">
+
+      <div class="form-group">
+        <label>EMAIL</label>
+        <input
+          type="email"
+          placeholder="Email address"
+          [(ngModel)]="loginData.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <div class="label-row">
+          <label>PASSWORD</label>
+          <a href="#" class="forgot-link">Forgot?</a>
+        </div>
+        <div class="input-icon-wrapper">
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            placeholder="Password"
+            [(ngModel)]="loginData.password"
+            name="password"
+          />
+          <button
+            type="button"
+            class="eye-btn"
+            (click)="togglePasswordVisibility()"
+          >
+            {{ showPassword() ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="primary-btn">LOG IN</button>
+
+    </form>
+  }
+
+  <!-- REGISTER FORM -->
+  @if (activeTab() === 'register') {
+    <form class="auth-form" (ngSubmit)="onRegister()">
+
+      <div class="form-group">
+        <label>FULL NAME</label>
+        <input
+          type="text"
+          placeholder="Enter your full name"
+          [(ngModel)]="registerData.fullName"
+          name="fullName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>EMAIL</label>
+        <input
+          type="email"
+          placeholder="Email address"
+          [(ngModel)]="registerData.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>PHONE NUMBER</label>
+        <input
+          type="tel"
+          placeholder="+1 (555) 000-0000"
+          [(ngModel)]="registerData.phone"
+          name="phone"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>PASSWORD</label>
+        <input
+          type="password"
+          placeholder="Create a password"
+          [(ngModel)]="registerData.password"
+          name="password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>CONFIRM PASSWORD</label>
+        <input
+          type="password"
+          placeholder="Confirm your password"
+          [(ngModel)]="registerData.confirmPassword"
+          name="confirmPassword"
+        />
+      </div>
+
+      <button type="submit" class="primary-btn">CREATE ACCOUNT</button>
+
+    </form>
+  }
+
+  <app-social-login />
+
+  <p class="terms">
+    @if (activeTab() === 'login') {
+      By logging in, you agree to our
+      <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+    } @else {
+      By creating an account, you agree to our
+      <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+    }
+  </p>
+
+</div>

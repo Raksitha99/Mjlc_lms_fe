@@ -1,0 +1,278 @@
+@use '../../../../styles/variables' as v;
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// ── WELCOME BANNER ──────────────────────────────
+.welcome-banner {
+  background: white;
+  border-radius: v.$border-radius;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: v.$card-shadow;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.welcome-heading {
+  font-size: 26px;
+  font-weight: 700;
+  color: v.$text-dark;
+  margin: 0;
+}
+
+.welcome-japanese {
+  font-size: 16px;
+  font-weight: 600;
+  color: v.$primary;
+  margin: 0;
+
+  span {
+    font-size: 13px;
+    font-weight: 400;
+    color: v.$text-grey;
+  }
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+
+  .btn-resume {
+    background-color: v.$primary;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#C62828, 8%);
+    }
+  }
+
+  .btn-goals {
+    background: white;
+    color: v.$text-dark;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+.welcome-mascot {
+  font-size: 72px;
+  line-height: 1;
+}
+
+// ── SECTION COMMON ──────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: v.$text-dark;
+  }
+
+  .section-link {
+    font-size: 13px;
+    color: v.$primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ── COURSES GRID ────────────────────────────────
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+// ── BOTTOM TWO COLUMNS ───────────────────────────
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  align-items: start;
+}
+
+// ── LIVE CLASSES ─────────────────────────────────
+.live-classes-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.live-classes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.view-schedule-btn {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: v.$text-grey;
+  cursor: pointer;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+// ── QUIZ RESULTS ─────────────────────────────────
+.quiz-results-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  .filter-label {
+    font-size: 12px;
+    color: v.$text-grey;
+  }
+}
+
+.quiz-table {
+  background: white;
+  border-radius: v.$border-radius;
+  box-shadow: v.$card-shadow;
+  overflow: hidden;
+}
+
+.quiz-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  padding: 10px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: v.$text-grey;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.quiz-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  padding: 12px 16px;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.quiz-name-col {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .quiz-check {
+    color: v.$success;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .quiz-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: v.$text-dark;
+    margin: 0;
+  }
+
+  .quiz-subtitle {
+    font-size: 11px;
+    color: v.$text-grey;
+    margin: 0;
+  }
+}
+
+.quiz-date {
+  font-size: 12px;
+  color: v.$text-grey;
+}
+
+.quiz-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  width: fit-content;
+
+  &.status-passed {
+    background: #e8f5e9;
+    color: v.$success;
+  }
+
+  &.status-perfect {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  &.status-failed {
+    background: #fdecea;
+    color: v.$primary;
+  }
+}
+
+.quiz-score {
+  font-size: 14px;
+  font-weight: 700;
+  color: v.$primary;
+
+  .quiz-total {
+    font-size: 11px;
+    font-weight: 400;
+    color: v.$text-grey;
+  }
+}

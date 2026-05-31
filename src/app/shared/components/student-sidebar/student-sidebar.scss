@@ -1,0 +1,170 @@
+@use '../../../../styles/variables' as v;
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  background-color: v.$sidebar-bg;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: v.$primary;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+
+    .brand-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+    }
+  }
+}
+
+.menu-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.3);
+  padding: 16px 16px 8px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 8px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  .nav-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+
+  .nav-label {
+    flex: 1;
+  }
+
+  .nav-arrow {
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  &:hover {
+    background-color: rgba(255,255,255,0.06);
+    color: white;
+  }
+
+  &.active {
+    background-color: v.$primary;
+    color: white;
+
+    .nav-icon,
+    .nav-label,
+    .nav-arrow {
+      color: white;
+    }
+  }
+}
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: auto;
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: v.$primary;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+
+      .user-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+      }
+
+      .user-role {
+        font-size: 10px;
+        color: rgba(255,255,255,0.4);
+      }
+    }
+  }
+
+  .logout-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

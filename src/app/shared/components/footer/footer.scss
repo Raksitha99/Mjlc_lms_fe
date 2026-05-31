@@ -1,0 +1,99 @@
+@use '../../../../styles/variables' as v;
+
+.footer {
+  margin-top: 32px;
+  border-top: 1px solid #eeeeee;
+}
+
+.connect-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  font-size: 13px;
+  color: v.$text-grey;
+
+  .social-icons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .social-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+.footer-main {
+  background: white;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .footer-logo {
+    width: 28px;
+    height: 28px;
+    background: v.$primary;
+    color: white;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: v.$text-dark;
+  }
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: v.$text-grey;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+
+  a {
+    font-size: 13px;
+    color: v.$primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #bdbdbd;
+}

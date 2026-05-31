@@ -1,0 +1,30 @@
+@use '../../../../styles/variables' as v;
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 24px;
+
+  .tab {
+    flex: 1;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: v.$text-grey;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      color: v.$text-dark;
+      border-bottom: 2px solid v.$primary;
+    }
+
+    &:hover:not(.active) {
+      color: v.$text-dark;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as v;
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  background-image:
+    radial-gradient(circle at center, #d0d0d0 1px, transparent 1px),
+    radial-gradient(ellipse 60% 60% at center, transparent 40%, #e0e0e0 100%);
+  background-size: 30px 30px, 100% 100%;
+}

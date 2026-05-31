@@ -1,0 +1,95 @@
+<div class="dashboard">
+
+  <!-- WELCOME BANNER -->
+  <div class="welcome-banner">
+    <div class="welcome-content">
+      <div class="streak-badge">
+        🔥 {{ streakDays }} Day Streak
+      </div>
+      <h2 class="welcome-heading">Welcome back, {{ studentName }}!</h2>
+      <p class="welcome-japanese">続けましょう <span>(Let's continue!)</span></p>
+      <div class="welcome-actions">
+        <button class="btn-resume" (click)="onResumeLesson()">
+          ▶ Resume Lesson
+        </button>
+        <button class="btn-goals" (click)="onDailyGoals()">
+          Daily Goals
+        </button>
+      </div>
+    </div>
+    <div class="welcome-mascot">🐱</div>
+  </div>
+
+  <!-- MY COURSES -->
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">My Courses</h3>
+      <a href="#" class="section-link">View All Courses →</a>
+    </div>
+    <div class="courses-grid">
+      @for (course of courses; track course.id) {
+        <app-course-card [course]="course" />
+      }
+    </div>
+  </div>
+
+  <!-- BOTTOM TWO COLUMNS -->
+  <div class="bottom-section">
+
+    <!-- UPCOMING LIVE CLASSES -->
+    <div class="live-classes-col">
+      <div class="section-header">
+        <h3 class="section-title">Upcoming Live Classes</h3>
+        <a href="#" class="section-link">—</a>
+      </div>
+      <div class="live-classes-list">
+        @for (cls of liveClasses; track cls.id) {
+          <app-live-class-card [liveClass]="cls" />
+        }
+      </div>
+      <button class="view-schedule-btn">View Full Schedule</button>
+    </div>
+
+    <!-- RECENT QUIZ RESULTS -->
+    <div class="quiz-results-col">
+      <div class="section-header">
+        <h3 class="section-title">Recent Quiz Results</h3>
+        <span class="filter-label">Filter by: <strong>Last 30 Days</strong></span>
+      </div>
+      <div class="quiz-table">
+        <div class="quiz-table-header">
+          <span>QUIZ NAME</span>
+          <span>DATE TAKEN</span>
+          <span>STATUS</span>
+          <span>SCORE</span>
+        </div>
+        @for (quiz of quizResults; track quiz.id) {
+          <div class="quiz-row">
+            <div class="quiz-name-col">
+              <span class="quiz-check">✓</span>
+              <div>
+                <p class="quiz-name">{{ quiz.name }}</p>
+                <p class="quiz-subtitle">{{ quiz.subtitle }}</p>
+              </div>
+            </div>
+            <span class="quiz-date">{{ quiz.dateTaken }}</span>
+            <span
+              class="quiz-status"
+              [ngClass]="{
+                'status-passed': quiz.status === 'Passed',
+                'status-perfect': quiz.status === 'Perfect',
+                'status-failed': quiz.status === 'Failed'
+              }"
+            >
+              {{ quiz.status }}
+            </span>
+            <span class="quiz-score">
+              {{ quiz.score }}<span class="quiz-total">/{{ quiz.total }}</span>
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+</div>

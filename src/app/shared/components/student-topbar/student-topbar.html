@@ -1,0 +1,30 @@
+<header class="topbar">
+
+  <div class="topbar-brand">
+    <div class="brand-logo">NA</div>
+    <span class="brand-name">Nihongo Academy</span>
+  </div>
+
+  <div class="topbar-search">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="Search anything..." />
+  </div>
+
+  <div class="topbar-right">
+    <div class="notification-btn">
+      <span class="bell">🔔</span>
+      @if (notificationCount > 0) {
+        <span class="badge">{{ notificationCount }}</span>
+      }
+    </div>
+
+    <div class="profile">
+      <div class="profile-info">
+        <span class="profile-name">{{ studentName }}</span>
+        <span class="profile-level">{{ studentLevel }}</span>
+      </div>
+      <div class="profile-avatar">YT</div>
+    </div>
+  </div>
+
+</header>
