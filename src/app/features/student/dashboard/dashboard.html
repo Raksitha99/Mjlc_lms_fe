@@ -44,7 +44,22 @@
       </div>
       <div class="live-classes-list">
         @for (cls of liveClasses; track cls.id) {
-          <app-live-class-card [liveClass]="cls" />
+          <app-live-class-card
+            mode="upcoming"
+            [upcomingClass]="{
+                id: cls.id,
+                thumbnail: 'assets/images/classes/placeholder.jpg',
+                badgeLabel: 'LIVE',
+                badgeColor: 'red',
+                startsIn: '',
+                date: cls.month + ' ' + cls.day,
+                time: cls.time,
+                duration: '',
+                title: cls.title,
+                instructor: cls.instructor,
+                attendeeCount: 0,
+                zoomUrl: '',
+                isJoinable: cls.isUpcoming }" />
         }
       </div>
       <button class="view-schedule-btn">View Full Schedule</button>

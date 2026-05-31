@@ -6,7 +6,6 @@ export interface Course {
   title: string;
   lessonsRemaining: string;
   progress: number;
-  // New fields for the full card on My Courses page
   thumbnail?: string;
   description?: string;
   buttonLabel?: 'Continue Learning' | 'Start Learning' | 'Review Course';
@@ -32,6 +31,37 @@ export interface QuizResult {
   total: number;
 }
 
+// ── NEW: Full Upcoming Class for Live Classes page ──────────────
+export interface UpcomingClass {
+  id: number;
+  thumbnail: string;
+  badgeLabel: string;
+  badgeColor: 'red' | 'green' | 'blue';
+  startsIn: string;           // e.g. 'Starts in 15 mins' or 'Tomorrow'
+  date: string;               // e.g. 'Today, Oct 24'
+  time: string;               // e.g. '18:00 - 19:30 (JST)'
+  duration: string;           // e.g. '60 MINS SESSION'
+  title: string;
+  instructor: string;
+  attendeeCount: number;
+  zoomUrl: string;
+  isJoinable: boolean;        // true = show Join button, false = Set Alert
+  alertNote?: string;         // e.g. 'Join link will be active 10 mins before class.'
+}
+
+// ── NEW: Past Class for Live Classes page ───────────────────────
+export interface PastClass {
+  id: number;
+  thumbnail: string;
+  levelBadge: string;
+  hasRecording: boolean;
+  title: string;
+  date: string;
+  instructor: string;
+  duration: string;
+}
+
+// ── EXISTING dummy data (unchanged) ────────────────────────────
 export const DUMMY_COURSES: Course[] = [
   {
     id: 1,
@@ -119,5 +149,64 @@ export const DUMMY_QUIZ_RESULTS: QuizResult[] = [
     status: 'Perfect',
     score: 100,
     total: 100
+  }
+];
+
+// ── NEW: Upcoming Classes dummy data ────────────────────────────
+export const DUMMY_UPCOMING_CLASSES: UpcomingClass[] = [
+  {
+    id: 1,
+    thumbnail: 'assets/images/classes/particles.jpg',
+    badgeLabel: 'JUST N5 COMPLETE',
+    badgeColor: 'red',
+    startsIn: 'Starts in 15 mins',
+    date: 'Today, Oct 24',
+    time: '18:00 - 19:30 (JST)',
+    duration: '60 MINS SESSION',
+    title: 'Mastering Particles: Wa vs Ga',
+    instructor: 'Yuki Sensei',
+    attendeeCount: 56,
+    zoomUrl: 'https://zoom.us/j/placeholder',
+    isJoinable: true
+  },
+  {
+    id: 2,
+    thumbnail: 'assets/images/classes/tokyo.jpg',
+    badgeLabel: 'N4 CONVERSATION',
+    badgeColor: 'green',
+    startsIn: 'Tomorrow',
+    date: 'Oct 25, 2023',
+    time: '10:00 - 11:00 (JST)',
+    duration: '60 MINS SESSION',
+    title: 'Speaking Practice: Shopping in Tokyo',
+    instructor: 'Kenji Sensei',
+    attendeeCount: 34,
+    zoomUrl: 'https://zoom.us/j/placeholder',
+    isJoinable: false,
+    alertNote: 'Join link will be active 10 mins before class.'
+  }
+];
+
+// ── NEW: Past Classes dummy data ─────────────────────────────────
+export const DUMMY_PAST_CLASSES: PastClass[] = [
+  {
+    id: 1,
+    thumbnail: 'assets/images/classes/keigo-past.jpg',
+    levelBadge: 'ALL LEVELS',
+    hasRecording: true,
+    title: 'Mastering Keigo Basics',
+    date: 'Oct 13',
+    instructor: 'Yuki Sensei',
+    duration: '90 mins'
+  },
+  {
+    id: 2,
+    thumbnail: 'assets/images/classes/hiragana.jpg',
+    levelBadge: 'JUST N5',
+    hasRecording: false,
+    title: 'Hiragana & Katakana Workshop',
+    date: 'Oct 12',
+    instructor: 'Kenji Sensei',
+    duration: '90 mins'
   }
 ];

@@ -1,26 +1,118 @@
-<div class="live-class-card">
-  <div class="date-block">
-    <span class="month">{{ liveClass.month }}</span>
-    <span class="day">{{ liveClass.day }}</span>
-  </div>
+<!-- ── UPCOMING CLASS CARD ─────────────────────────────── -->
+@if (mode === 'upcoming' && upcomingClass) {
+  <div class="card upcoming-card">
 
-  <div class="class-info">
-    <p class="class-title">{{ liveClass.title }}</p>
-    <p class="class-time">
-      <span class="clock-icon">🕐</span>
-      {{ liveClass.time }}
-    </p>
-    <p class="instructor">
-      <span class="person-icon">👤</span>
-      {{ liveClass.instructor }}
-    </p>
-  </div>
+    <!-- LEFT: Thumbnail -->
+    <div class="upcoming-thumbnail">
+      <img
+        [src]="upcomingClass.thumbnail || 'assets/images/classes/placeholder.jpg'"
+        [alt]="upcomingClass.title"
+      />
+    </div>
 
-  <div class="action">
-    @if (liveClass.isUpcoming) {
-      <button class="btn-join" (click)="onJoin()">Join</button>
-    } @else {
-      <button class="btn-alert" (click)="onSetAlert()">Set Alert</button>
-    }
+    <!-- RIGHT: Content -->
+    <div class="upcoming-content">
+
+      <div class="upcoming-top-row">
+        <div class="left-badges">
+          <span
+            class="status-badge"
+            [ngClass]="{
+              'badge-red':   upcomingClass.badgeColor === 'red',
+              'badge-green': upcomingClass.badgeColor === 'green',
+              'badge-blue':  upcomingClass.badgeColor === 'blue'
+            }"
+          >
+            {{ upcomingClass.badgeLabel }}
+          </span>
+          <span class="starts-in">{{ upcomingClass.startsIn }}</span>
+        </div>
+        <div class="right-meta">
+          <span class="meta-item">📅 {{ upcomingClass.date }}</span>
+          <span class="meta-item">🕐 {{ upcomingClass.time }}</span>
+          <span class="duration-badge">{{ upcomingClass.duration }}</span>
+        </div>
+      </div>
+
+      <h3 class="upcoming-title">{{ upcomingClass.title }}</h3>
+
+      <div class="instructor-row">
+        <div class="instructor-avatar">
+          {{ upcomingClass.instructor.charAt(0) }}
+        </div>
+        <span class="instructor-name">{{ upcomingClass.instructor }}</span>
+      </div>
+
+      <div class="upcoming-bottom-row">
+        <div class="attendees">
+          <div class="avatar-stack">
+            <div class="avatar-circle">A</div>
+            <div class="avatar-circle">B</div>
+            <div class="avatar-circle">C</div>
+          </div>
+          <span class="attendee-count">
+            +{{ upcomingClass.attendeeCount }} others
+          </span>
+        </div>
+
+        @if (upcomingClass.isJoinable) {
+          <button class="btn-join" (click)="onJoinZoom()">
+            📹 Join with Zoom
+          </button>
+        } @else {
+          <div class="not-joinable-col">
+            @if (upcomingClass.alertNote) {
+              <p class="alert-note">{{ upcomingClass.alertNote }}</p>
+            }
+            <button class="btn-alert" (click)="onSetAlert()">
+              🔔 Set Alert
+            </button>
+          </div>
+        }
+      </div>
+
+    </div>
   </div>
-</div>
+}
+
+<!-- ── PAST CLASS CARD ──────────────────────────────────── -->
+@if (mode === 'past' && pastClass) {
+  <div class="card past-card">
+
+    <!-- LEFT: Small Thumbnail -->
+    <div class="past-thumbnail">
+      <img
+        [src]="pastClass.thumbnail || 'assets/images/courses/placeholder.jpg'"
+        [alt]="pastClass.title"
+      />
+    </div>
+
+    <!-- RIGHT: Content -->
+    <div class="past-content">
+      <div class="past-badges">
+        <span class="level-badge">{{ pastClass.levelBadge }}</span>
+        @if (pastClass.hasRecording) {
+          <span class="recording-badge">🔴 RECORDING AVAILABLE</span>
+        }
+      </div>
+
+      <h4 class="past-title">{{ pastClass.title }}</h4>
+
+      <p class="past-meta">
+        {{ pastClass.date }} · {{ pastClass.instructor }} · {{ pastClass.duration }}
+      </p>
+    </div>
+
+    <!-- RIGHT: Action -->
+    <div class="past-action">
+      @if (pastClass.hasRecording) {
+        <button class="btn-recording" (click)="onWatchRecording()">
+          Watch Recording
+        </button>
+      } @else {
+        <span class="btn-ended">Class Ended</span>
+      }
+    </div>
+
+  </div>
+}

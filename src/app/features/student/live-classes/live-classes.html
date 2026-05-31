@@ -1,1 +1,94 @@
-<p>live-classes works!</p>
+<div class="live-classes-page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h2 class="page-title">Live Classes</h2>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-row">
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'upcoming'"
+      (click)="setTab('upcoming')"
+    >
+      Upcoming
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'past'"
+      (click)="setTab('past')">
+      Past
+    </button>
+  </div>
+
+  <!-- ── UPCOMING TAB ───────────────────────────── -->
+  @if (activeTab() === 'upcoming') {
+
+    <!-- HAPPENING SOON SECTION -->
+    @if (happeningSoon().length > 0) {
+      <div class="section">
+        <div class="section-label-row">
+          <span class="section-indicator"></span>
+          <h3 class="section-heading">Happening Soon</h3>
+        </div>
+        <div class="cards-list">
+          @for (cls of happeningSoon(); track cls.id) {
+            <app-live-class-card
+              mode="upcoming"
+              [upcomingClass]="cls"
+            />
+          }
+        </div>
+      </div>
+    }
+
+    <!-- SCHEDULED SOON SECTION -->
+    @if (scheduledSoon().length > 0) {
+      <div class="section">
+        <div class="cards-list">
+          @for (cls of scheduledSoon(); track cls.id) {
+            <app-live-class-card
+              mode="upcoming"
+              [upcomingClass]="cls"
+            />
+          }
+        </div>
+      </div>
+    }
+
+    <!-- EMPTY STATE -->
+    @if (upcomingClasses.length === 0) {
+      <div class="empty-state">
+        <p class="empty-icon">📹</p>
+        <p class="empty-title">No upcoming classes</p>
+        <p class="empty-sub">Check back soon for new sessions</p>
+      </div>
+    }
+
+  }
+
+  <!-- ── PAST TAB ──────────────────────────────── -->
+  @if (activeTab() === 'past') {
+    <div class="section">
+      <h3 class="section-heading past-heading">Past Classes</h3>
+      @if (pastClasses.length > 0) {
+        <div class="cards-list">
+          @for (cls of pastClasses; track cls.id) {
+            <app-live-class-card
+              mode="past"
+              [pastClass]="cls"
+            />
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <p class="empty-icon">📼</p>
+          <p class="empty-title">No past classes yet</p>
+          <p class="empty-sub">Completed classes will appear here</p>
+        </div>
+      }
+    </div>
+  }
+
+</div>

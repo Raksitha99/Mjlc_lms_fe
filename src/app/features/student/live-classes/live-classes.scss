@@ -1,0 +1,105 @@
+@use '../../../../styles/variables' as v;
+
+.live-classes-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ── PAGE HEADER ────────────────────────────────
+.page-header {
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: v.$text-dark;
+    margin: 0;
+  }
+}
+
+// ── TABS ───────────────────────────────────────
+.tabs-row {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  gap: 0;
+}
+
+.tab {
+  padding: 10px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: v.$text-grey;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &.active {
+    color: v.$primary;
+    border-bottom-color: v.$primary;
+    font-weight: 700;
+  }
+
+  &:hover:not(.active) {
+    color: v.$text-dark;
+  }
+}
+
+// ── SECTIONS ───────────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .section-indicator {
+    width: 4px;
+    height: 16px;
+    background: v.$primary;
+    border-radius: 2px;
+  }
+
+  .section-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: v.$text-dark;
+    margin: 0;
+  }
+}
+
+.past-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: v.$text-dark;
+  margin: 0;
+}
+
+// ── CARDS LIST ─────────────────────────────────
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── EMPTY STATE ────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: v.$border-radius;
+  box-shadow: v.$card-shadow;
+  gap: 8px;
+
+  .empty-icon  { font-size: 48px; margin: 0; }
+  .empty-title { font-size: 16px; font-weight: 700; color: v.$text-dark; margin: 0; }
+  .empty-sub   { font-size: 13px; color: v.$text-grey; margin: 0; }
+}

@@ -1,90 +1,308 @@
 @use '../../../../styles/variables' as v;
-@use 'sass:color';
 
-.live-class-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+// ── SHARED BASE ─────────────────────────────────────────
+.card {
   background: white;
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: v.$border-radius;
   box-shadow: v.$card-shadow;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
 }
 
-.date-block {
+// ── UPCOMING CARD ───────────────────────────────────────
+.upcoming-card {
+  display: flex;
+  min-height: 180px;
+}
+
+.upcoming-thumbnail {
+  width: 200px;
+  min-width: 200px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.upcoming-content {
+  flex: 1;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: v.$primary;
-  color: white;
-  border-radius: 8px;
-  padding: 8px 12px;
-  min-width: 46px;
-
-  .month {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  .day {
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
+  gap: 10px;
 }
 
-.class-info {
-  flex: 1;
+.upcoming-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-  .class-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: v.$text-dark;
-    margin-bottom: 4px;
-  }
+.left-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  .class-time,
-  .instructor {
-    font-size: 11px;
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+
+  &.badge-red   { background: v.$primary;  color: white; }
+  &.badge-green { background: #2e7d32;     color: white; }
+  &.badge-blue  { background: #1565c0;     color: white; }
+}
+
+.starts-in {
+  font-size: 12px;
+  color: v.$text-grey;
+}
+
+.right-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.meta-item {
+  font-size: 12px;
+  color: v.$text-grey;
+}
+
+.duration-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: v.$primary;
+  letter-spacing: 0.3px;
+}
+
+.upcoming-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: v.$text-dark;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.instructor-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instructor-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: v.$primary;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor-name {
+  font-size: 13px;
+  color: v.$text-grey;
+}
+
+.upcoming-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.attendees {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-stack {
+  display: flex;
+
+  .avatar-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    border: 2px solid white;
+    margin-left: -6px;
+    font-size: 10px;
+    font-weight: 700;
     color: v.$text-grey;
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 2px;
+    justify-content: center;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 
-.action {
-  .btn-join {
-    background-color: v.$primary;
-    color: white;
-    border: none;
+.attendee-count {
+  font-size: 12px;
+  color: v.$text-grey;
+}
+
+.btn-join {
+  background: v.$primary;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+
+  &:hover {
+    background: darken(#c62828, 8%);
+  }
+}
+
+.not-joinable-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.alert-note {
+  font-size: 11px;
+  color: v.$text-grey;
+  margin: 0;
+  font-style: italic;
+}
+
+.btn-alert {
+  background: white;
+  color: v.$text-dark;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+// ── PAST CARD ────────────────────────────────────────────
+.past-card {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-height: 90px;
+}
+
+.past-thumbnail {
+  width: 110px;
+  min-width: 110px;
+  height: 90px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.past-content {
+  flex: 1;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.past-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.level-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  color: v.$text-grey;
+  text-transform: uppercase;
+}
+
+.recording-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1565c0;
+  letter-spacing: 0.2px;
+}
+
+.past-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: v.$text-dark;
+  margin: 0;
+}
+
+.past-meta {
+  font-size: 11px;
+  color: v.$text-grey;
+  margin: 0;
+}
+
+.past-action {
+  padding: 0 16px;
+  white-space: nowrap;
+
+  .btn-recording {
+    background: white;
+    color: #1565c0;
+    border: 1px solid #1565c0;
     border-radius: 6px;
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 8px 14px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
+    transition: background 0.2s;
 
     &:hover {
-      background-color: color.adjust(#C62828, $lightness: -8%);
+      background: #e3f2fd;
     }
   }
 
-  .btn-alert {
-    background: white;
-    color: v.$text-dark;
-    border: 1px solid #e0e0e0;
+  .btn-ended {
+    display: inline-block;
+    background: #f5f5f5;
+    color: v.$text-grey;
     border-radius: 6px;
     padding: 8px 14px;
     font-size: 12px;
     font-weight: 500;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #f5f5f5;
-    }
   }
 }

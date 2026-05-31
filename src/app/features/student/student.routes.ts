@@ -19,6 +19,12 @@ export const STUDENT_ROUTES: Routes = [
             .then(m => m.MyCoursesComponent)
       },
       {
+        path: 'live-classes',
+        loadComponent: () =>
+          import('./live-classes/live-classes')
+            .then(m => m.LiveClassesComponent)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
