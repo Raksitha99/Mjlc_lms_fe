@@ -1,0 +1,55 @@
+<div class="full-card">
+
+  <!-- THUMBNAIL -->
+  <div class="thumbnail-wrapper">
+    <img
+      [src]="course.thumbnail || 'assets/images/courses/placeholder.jpg'"
+      [alt]="course.title"
+      class="thumbnail"
+    />
+    <span
+      class="level-badge"
+      [ngClass]="course.levelColor === 'red' ? 'badge-red' : 'badge-grey'"
+    >
+      {{ course.level }}
+    </span>
+  </div>
+
+  <!-- CARD BODY -->
+  <div class="card-body">
+
+    <h3 class="course-title">{{ course.title }}</h3>
+    <p class="course-description">{{ course.description }}</p>
+
+    <!-- PROGRESS -->
+    <div class="progress-section">
+      <div class="progress-label-row">
+        <span class="progress-label">Progress</span>
+        <span
+          class="progress-value"
+          [ngClass]="course.progress === 0 ? 'value-grey' : 'value-red'"
+        >
+          {{ course.progress }}%
+        </span>
+      </div>
+      <div class="progress-track">
+        <div
+          class="progress-fill"
+          [style.width.%]="course.progress"
+          [ngClass]="course.progress === 0 ? 'fill-grey' : 'fill-red'"
+        ></div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="card-actions">
+      <button class="btn-primary" (click)="onPrimaryAction()">
+        {{ course.buttonLabel || 'Continue Learning' }}
+      </button>
+      <button class="btn-secondary" (click)="onViewDetails()">
+        View Details
+      </button>
+    </div>
+
+  </div>
+</div>

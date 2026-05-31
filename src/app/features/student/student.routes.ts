@@ -13,6 +13,12 @@ export const STUDENT_ROUTES: Routes = [
             .then(m => m.DashboardComponent)
       },
       {
+        path: 'my-courses',
+        loadComponent: () =>
+          import('./my-courses/my-courses')
+            .then(m => m.MyCoursesComponent)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'

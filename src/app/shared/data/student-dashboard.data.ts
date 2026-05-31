@@ -6,6 +6,10 @@ export interface Course {
   title: string;
   lessonsRemaining: string;
   progress: number;
+  // New fields for the full card on My Courses page
+  thumbnail?: string;
+  description?: string;
+  buttonLabel?: 'Continue Learning' | 'Start Learning' | 'Review Course';
 }
 
 export interface LiveClass {
@@ -36,7 +40,10 @@ export const DUMMY_COURSES: Course[] = [
     levelColor: 'red',
     title: 'JLPT N5 Grammar Master',
     lessonsRemaining: '24 lessons remaining',
-    progress: 65
+    progress: 65,
+    thumbnail: 'assets/images/courses/n5-grammar.jpg',
+    description: 'Complete guide to foundational grammar.',
+    buttonLabel: 'Continue Learning'
   },
   {
     id: 2,
@@ -45,7 +52,10 @@ export const DUMMY_COURSES: Course[] = [
     levelColor: 'red',
     title: 'Daily Conversation & Slang',
     lessonsRemaining: '112 lessons remaining',
-    progress: 12
+    progress: 12,
+    thumbnail: 'assets/images/courses/n4-conversation.jpg',
+    description: 'Learn how people actually talk in Tokyo.',
+    buttonLabel: 'Continue Learning'
   },
   {
     id: 3,
@@ -54,7 +64,10 @@ export const DUMMY_COURSES: Course[] = [
     levelColor: 'grey',
     title: 'Mastering Keigo (Polite Japanese)',
     lessonsRemaining: 'Not started yet',
-    progress: 0
+    progress: 0,
+    thumbnail: 'assets/images/courses/keigo.jpg',
+    description: 'Navigate business and formal social situations.',
+    buttonLabel: 'Start Learning'
   }
 ];
 

@@ -1,1 +1,88 @@
-<p>my-courses works!</p>
+<div class="my-courses-page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h2 class="page-title">My Courses</h2>
+    <div class="header-controls">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Search courses..."
+          (input)="onSearch($event)"
+        />
+      </div>
+      <button class="filter-btn">
+        Filter by Level ▾
+      </button>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-row">
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'inProgress'"
+      (click)="setTab('inProgress')"
+    >
+      In Progress
+      <span class="tab-badge" [class.badge-active]="activeTab() === 'inProgress'">
+        {{ inProgressCount() }}
+      </span>
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'completed'"
+      (click)="setTab('completed')"
+    >
+      Completed
+      <span class="tab-badge">{{ completedCount() }}</span>
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab() === 'all'"
+      (click)="setTab('all')"
+    >
+      All Courses
+    </button>
+  </div>
+
+  <!-- STATS SUMMARY BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value red">{{ totalEnrolled() }}</span>
+      <span class="stat-label">Total Enrolled</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value red">{{ inProgressCount() }}</span>
+      <span class="stat-label">In Progress</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value green">{{ completedCount() }}</span>
+      <span class="stat-label">Completed</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value red">{{ avgProgress() }}%</span>
+      <span class="stat-label">Avg Progress</span>
+    </div>
+  </div>
+
+  <!-- COURSE CARDS GRID -->
+  @if (visibleCourses().length > 0) {
+    <div class="courses-grid">
+      @for (course of visibleCourses(); track course.id) {
+        <app-course-full-card [course]="course" />
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <p class="empty-icon">📚</p>
+      <p class="empty-title">No courses found</p>
+      <p class="empty-sub">Try a different tab or search term</p>
+    </div>
+  }
+
+</div>
