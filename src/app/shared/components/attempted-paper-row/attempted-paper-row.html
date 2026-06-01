@@ -1,0 +1,50 @@
+<div class="row">
+
+  <!-- ICON + NAME -->
+  <div class="name-col">
+    <div
+      class="doc-icon"
+      [ngClass]="{
+        'icon-red':    paper.iconColor === 'red',
+        'icon-orange': paper.iconColor === 'orange',
+        'icon-grey':   paper.iconColor === 'grey'
+      }"
+    >
+      📄
+    </div>
+    <div class="name-info">
+      <p class="paper-name">{{ paper.name }}</p>
+      <p class="paper-subtitle">{{ paper.subtitle }}</p>
+    </div>
+  </div>
+
+  <!-- STATUS -->
+  <div class="status-col">
+    <span
+      class="status-badge"
+      [ngClass]="{
+        'status-completed':   paper.status === 'Completed',
+        'status-in-progress': paper.status === 'In Progress'
+      }"
+    >
+      {{ paper.status }}
+    </span>
+  </div>
+
+  <!-- SCORE -->
+  <div class="score-col">
+    @if (paper.score !== undefined) {
+      <span class="score-value">{{ paper.score }}%</span>
+    } @else {
+      <span class="score-dash">—</span>
+    }
+  </div>
+
+  <!-- ACTION -->
+  <div class="action-col">
+    <button class="action-link" (click)="onAction()">
+      {{ actionLabel }}
+    </button>
+  </div>
+
+</div>

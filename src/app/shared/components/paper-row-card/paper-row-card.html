@@ -1,0 +1,86 @@
+<div
+  class="paper-row"
+  [ngClass]="{
+    'row-completed':    paper.status === 'Completed',
+    'row-in-progress':  paper.status === 'In Progress',
+    'row-not-attempted': paper.status === 'Not Attempted'
+  }"
+>
+
+  <!-- LEFT: Year Block -->
+  <div
+    class="year-block"
+    [ngClass]="{
+      'year-completed':    paper.status === 'Completed',
+      'year-in-progress':  paper.status === 'In Progress',
+      'year-not-attempted': paper.status === 'Not Attempted'
+    }"
+  >
+    <span class="year-number">{{ paper.year }}</span>
+    <span class="year-badge">{{ paper.levelBadge }}</span>
+  </div>
+
+  <!-- CENTER: Paper Info -->
+  <div class="paper-info">
+
+    <div class="info-top-row">
+      <h4 class="paper-title">{{ paper.title }}</h4>
+      <span
+        class="status-badge"
+        [ngClass]="{
+          'badge-completed':    paper.status === 'Completed',
+          'badge-in-progress':  paper.status === 'In Progress',
+          'badge-not-attempted': paper.status === 'Not Attempted'
+        }"
+      >
+        {{ paper.status }}
+      </span>
+    </div>
+
+    <p class="paper-subtitle">{{ paper.subtitle }}</p>
+
+    <div class="paper-meta">
+      <span class="meta-item">🕐 {{ paper.duration }}</span>
+      <span class="meta-item">❓ {{ paper.questions }} Questions</span>
+      @if (paper.avgScore !== undefined) {
+        <span class="meta-item">📊 Avg Score: {{ paper.avgScore }}%</span>
+      }
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Score + Actions -->
+  <div class="paper-actions">
+
+    @if (paper.status === 'Completed') {
+      <div class="score-block">
+        <span class="score-value">{{ paper.score }}%</span>
+      </div>
+      <div class="action-buttons">
+        <button class="btn-review" (click)="onReview()">
+          Review Answers
+        </button>
+        <button class="btn-retry" (click)="onRetry()">
+          Retry Paper
+        </button>
+        <button class="btn-reattempt" (click)="onRetry()">
+          Re Attempt
+        </button>
+      </div>
+    }
+
+    @if (paper.status === 'In Progress') {
+      <button class="btn-continue" (click)="onContinue()">
+        Continue
+      </button>
+    }
+
+    @if (paper.status === 'Not Attempted') {
+      <button class="btn-start" (click)="onStart()">
+        Start Paper
+      </button>
+    }
+
+  </div>
+
+</div>

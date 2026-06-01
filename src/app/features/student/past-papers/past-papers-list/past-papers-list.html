@@ -1,1 +1,117 @@
-<p>past-papers-list works!</p>
+<div class="papers-list-page">
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <button class="breadcrumb-link" (click)="goBack()">Past Papers</button>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">{{ course?.title }}</span>
+  </div>
+
+  <!-- HERO BANNER -->
+  @if (course) {
+    <div class="hero-banner">
+      <div class="hero-content">
+        <span class="hero-level-badge">{{ course.levelBadge }}</span>
+        <h2 class="hero-title">{{ course.title }}</h2>
+        <p class="hero-subtitle">
+          Practice with real N4 examination papers covering
+          grammar, vocabulary and reading
+        </p>
+        <div class="hero-meta">
+          <span class="meta-chip">📄 {{ course.paperCount }} Papers</span>
+          <span class="meta-chip">📅 {{ course.yearRange }}</span>
+          <span class="meta-chip">👥 {{ course.attemptCount }} Students</span>
+        </div>
+        <div class="best-score-pill">
+          🏆 Your Best Score:
+          <strong>{{ progressStats.bestScore }}%</strong>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          [src]="course.thumbnail || 'assets/images/papers/placeholder.jpg'"
+          [alt]="course.title"
+        />
+      </div>
+    </div>
+  }
+
+  <!-- FILTER TABS + SORT -->
+  <div class="filter-row">
+    <div class="tabs">
+      <button
+        class="tab"
+        [class.active]="activeTab() === 'all'"
+        (click)="setTab('all')"
+      >
+        All Papers
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab() === 'notAttempted'"
+        (click)="setTab('notAttempted')"
+      >
+        Not Attempted
+        <span class="tab-count">{{ notAttemptedCount }}</span>
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab() === 'completed'"
+        (click)="setTab('completed')"
+      >
+        Completed
+        <span class="tab-count">{{ completedCount }}</span>
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab() === 'inProgress'"
+        (click)="setTab('inProgress')"
+      >
+        In Progress
+        <span class="tab-count">{{ inProgressCount }}</span>
+      </button>
+    </div>
+    <div class="sort-control">
+      <span class="sort-label">Sort by:</span>
+      <select class="sort-select">
+        <option>Latest First</option>
+        <option>Oldest First</option>
+        <option>Score: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- TWO COLUMN LAYOUT -->
+  <div class="content-layout">
+
+    <!-- LEFT: Papers List -->
+    <div class="papers-col">
+      @if (visiblePapers().length > 0) {
+        <div class="papers-list">
+          @for (paper of visiblePapers(); track paper.id) {
+            <app-paper-row-card
+              [paper]="paper"
+              (startPaper)="onStart($event)"
+              (continuePaper)="onContinue($event)"
+              (reviewPaper)="onReview($event)"
+              (retryPaper)="onRetry($event)"
+            />
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <p class="empty-icon">📄</p>
+          <p class="empty-title">No papers in this category</p>
+          <p class="empty-sub">Try a different filter tab</p>
+        </div>
+      }
+    </div>
+
+    <!-- RIGHT: Progress Sidebar -->
+    <div class="sidebar-col">
+      <app-progress-sidebar-card [stats]="progressStats" />
+    </div>
+
+  </div>
+
+</div>

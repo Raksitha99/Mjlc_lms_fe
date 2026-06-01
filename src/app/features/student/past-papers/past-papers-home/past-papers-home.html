@@ -1,1 +1,75 @@
-<p>past-papers-home works!</p>
+<div class="past-papers-page">
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <span class="breadcrumb-current">Past Papers</span>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="header-left">
+      <h2 class="page-title">Past Papers</h2>
+      <p class="page-subtitle">
+        Select a course to access past examination papers
+      </p>
+    </div>
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search papers..." />
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-label">Available Courses</span>
+      <span class="stat-value">{{ courses.length }}</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-label">Total Past Papers</span>
+      <span class="stat-value">{{ totalPapers }}</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-label">Papers Attempted</span>
+      <span class="stat-value">{{ papersAttempted }}</span>
+    </div>
+  </div>
+
+  <!-- COURSE CARDS GRID -->
+  <div class="courses-grid">
+    @for (course of courses; track course.id) {
+      <app-past-paper-course-card
+        [course]="course"
+        (viewPapers)="onViewPapers($event)"
+      />
+    }
+  </div>
+
+  <!-- RECENTLY ATTEMPTED -->
+  <div class="recently-attempted">
+    <h3 class="section-title">Recently Attempted</h3>
+
+    <div class="attempts-table">
+
+      <!-- TABLE HEADER -->
+      <div class="table-header">
+        <span>PAPER NAME</span>
+        <span>STATUS</span>
+        <span>SCORE</span>
+        <span>ACTION</span>
+      </div>
+
+      <!-- TABLE ROWS -->
+      @for (paper of attemptedPapers; track paper.id) {
+        <app-attempted-paper-row
+          [paper]="paper"
+          (action)="onPaperAction($event)"
+        />
+      }
+
+    </div>
+  </div>
+
+</div>

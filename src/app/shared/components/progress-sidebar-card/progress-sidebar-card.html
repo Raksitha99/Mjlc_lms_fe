@@ -1,0 +1,79 @@
+<div class="progress-card">
+
+  <h4 class="card-title">Your Progress</h4>
+
+  <!-- CIRCULAR PROGRESS RING -->
+  <div class="ring-wrapper">
+    <svg class="ring-svg" viewBox="0 0 100 100">
+      <!-- Background track -->
+      <circle
+        class="ring-track"
+        cx="50" cy="50"
+        [attr.r]="radius"
+        fill="none"
+        stroke="#f0f0f0"
+        stroke-width="10"
+      />
+      <!-- Progress fill -->
+      <circle
+        class="ring-fill"
+        cx="50" cy="50"
+        [attr.r]="radius"
+        fill="none"
+        stroke="#C62828"
+        stroke-width="10"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="strokeDashoffset"
+        transform="rotate(-90 50 50)"
+      />
+    </svg>
+    <div class="ring-center">
+      <span class="ring-percent">{{ completedPercent }}%</span>
+      <span class="ring-label">COMPLETED</span>
+    </div>
+  </div>
+
+  <!-- BREAKDOWN LIST -->
+  <div class="breakdown-list">
+    <div class="breakdown-item">
+      <span class="dot dot-completed"></span>
+      <span class="breakdown-label">Completed</span>
+      <span class="breakdown-value">{{ stats.completedCount }} Papers</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="dot dot-in-progress"></span>
+      <span class="breakdown-label">In Progress</span>
+      <span class="breakdown-value">{{ stats.inProgressCount }} Paper</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="dot dot-not-attempted"></span>
+      <span class="breakdown-label">Not Attempted</span>
+      <span class="breakdown-value">{{ stats.notAttemptedCount }} Papers</span>
+    </div>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <!-- BEST SCORE -->
+  <div class="best-score-section">
+    <p class="best-score-heading">BEST SCORE</p>
+    <div class="best-score-row">
+      <span class="trophy">🏆</span>
+      <span class="best-score-value">{{ stats.bestScore }}%</span>
+    </div>
+    <p class="best-score-paper">{{ stats.bestScorePaper }}</p>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <!-- AVERAGE SCORE -->
+  <div class="avg-score-section">
+    <span class="avg-label">Average Score:</span>
+    <span class="avg-value">{{ stats.averageScore }}%</span>
+  </div>
+
+  <!-- VIEW ALL RESULTS -->
+  <button class="view-all-btn">View All Results</button>
+
+</div>

@@ -1,0 +1,198 @@
+@use '../../../../styles/variables' as v;
+
+.paper-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: v.$card-shadow;
+  border-left: 4px solid transparent;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  }
+
+  &.row-completed     { border-left-color: v.$success; }
+  &.row-in-progress   { border-left-color: v.$warning; }
+  &.row-not-attempted { border-left-color: #e0e0e0; }
+}
+
+// ── YEAR BLOCK ─────────────────────────────────
+.year-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 64px;
+  flex-shrink: 0;
+
+  &.year-completed     { background: v.$primary; }
+  &.year-in-progress   { background: v.$primary; }
+  &.year-not-attempted { background: #bdbdbd; }
+}
+
+.year-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+}
+
+.year-badge {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+// ── PAPER INFO ─────────────────────────────────
+.paper-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.info-top-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.paper-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: v.$text-dark;
+  margin: 0;
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+
+  &.badge-completed     { background: #e8f5e9; color: v.$success; }
+  &.badge-in-progress   { background: #fff3e0; color: v.$warning; }
+  &.badge-not-attempted { background: #f5f5f5; color: v.$text-grey; }
+}
+
+.paper-subtitle {
+  font-size: 12px;
+  color: v.$text-grey;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.paper-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+
+  .meta-item {
+    font-size: 11px;
+    color: v.$text-grey;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
+
+// ── PAPER ACTIONS ──────────────────────────────
+.paper-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.score-block {
+  .score-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$primary;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+// Shared button base
+%action-btn {
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-review {
+  @extend %action-btn;
+  background: white;
+  color: v.$primary;
+  border: 1px solid v.$primary;
+
+  &:hover { background: #fdecea; }
+}
+
+.btn-retry {
+  @extend %action-btn;
+  background: none;
+  color: v.$text-grey;
+  border: 1px solid #e0e0e0;
+
+  &:hover {
+    background: #f5f5f5;
+    color: v.$text-dark;
+  }
+}
+
+.btn-reattempt {
+  @extend %action-btn;
+  background: none;
+  color: v.$text-grey;
+  border: 1px solid #e0e0e0;
+
+  &:hover {
+    background: #f5f5f5;
+    color: v.$text-dark;
+  }
+}
+
+.btn-continue {
+  @extend %action-btn;
+  background: v.$warning;
+  color: white;
+  border: none;
+
+  &:hover { background: darken(#f57c00, 8%); }
+}
+
+.btn-start {
+  @extend %action-btn;
+  background: white;
+  color: v.$text-dark;
+  border: 1px solid #e0e0e0;
+
+  &:hover { background: #f5f5f5; }
+}

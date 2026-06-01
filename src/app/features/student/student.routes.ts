@@ -25,6 +25,18 @@ export const STUDENT_ROUTES: Routes = [
             .then(m => m.LiveClassesComponent)
       },
       {
+        path: 'past-papers',
+        loadComponent: () =>
+          import('./past-papers/past-papers-home/past-papers-home')
+            .then(m => m.PastPapersHomeComponent)
+      },
+      {
+        path: 'past-papers/:courseId',
+        loadComponent: () =>
+            import('./past-papers/past-papers-list/past-papers-list')
+                .then(m => m.PastPapersListComponent)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'

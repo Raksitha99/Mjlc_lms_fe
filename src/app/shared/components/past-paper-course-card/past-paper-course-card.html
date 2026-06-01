@@ -1,0 +1,44 @@
+<div class="pp-card">
+
+  <!-- THUMBNAIL WITH BADGES -->
+  <div class="thumbnail-wrapper">
+    <img
+      [src]="course.thumbnail || 'assets/images/papers/placeholder.jpg'"
+      [alt]="course.title"
+      class="thumbnail"
+    />
+    <span class="badge-level">{{ course.levelBadge }}</span>
+    <span class="badge-count">{{ course.paperCount }} PAPERS</span>
+  </div>
+
+  <!-- CARD BODY -->
+  <div class="card-body">
+
+    <h3 class="course-title">{{ course.title }}</h3>
+
+    <div class="course-meta">
+      <span class="paper-info">
+        {{ course.paperCount }} Papers · {{ course.yearRange }}
+      </span>
+      <span class="rating">
+        <span class="stars">⭐</span>
+        {{ course.rating }}
+      </span>
+    </div>
+
+    <div class="card-footer-row">
+      <div class="attempts">
+        <div class="avatar-stack">
+          <div class="av">A</div>
+          <div class="av">B</div>
+          <div class="av">C</div>
+        </div>
+        <span class="attempt-count">{{ course.attemptCount }} attempts</span>
+      </div>
+      <button class="view-papers-btn" (click)="onViewPapers()">
+        View Papers →
+      </button>
+    </div>
+
+  </div>
+</div>
