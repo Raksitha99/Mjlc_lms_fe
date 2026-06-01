@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PastPaperCourseCardComponent } from '../../../../shared/components/past-paper-course-card/past-paper-course-card';
